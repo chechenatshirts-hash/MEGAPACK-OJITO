@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Megapack Chechena – Chechena Shirts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f5f5;
+      --grey: #1a1a1a;
+      --mid: #2a2a2a;
+      --muted: #888;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Barlow', sans-serif;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      min-height: 100vh;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      background: var(--white);
+      text-align: center;
+      padding: 10px 16px;
+      font-family: var(--font-body);
+      font-size: clamp(11px, 1.5vw, 13px);
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+
+    /* NAV */
+    .nav {
+      background: var(--black);
+      border-bottom: 1px solid #1f1f1f;
+      padding: 14px clamp(16px, 5vw, 48px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-back:hover { color: var(--white); }
+    .nav-back svg { width: 16px; height: 16px; }
+    .nav-brand {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      letter-spacing: .1em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    /* MAIN LAYOUT */
+    .product-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: clamp(24px, 4vw, 48px) clamp(16px, 5vw, 48px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(24px, 4vw, 56px);
+      align-items: start;
+    }
+
+    /* LEFT */
+    .main-img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      background: #111;
+    }
+    .main-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .img-badge {
+      position: absolute;
+      top: 14px; left: 14px;
+      background: var(--white);
+      color: var(--black);
+      font-family: var(--font-body);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+    }
+    .thumbs {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px; margin-top: 8px;
+    }
+    .thumb {
+      aspect-ratio: 1/1; overflow: hidden;
+      cursor: pointer; border: 2px solid transparent;
+      transition: border-color .2s; background: #111;
+    }
+    .thumb.active { border-color: var(--white); }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s; }
+    .thumb:hover img { transform: scale(1.08); }
+
+    /* RIGHT */
+    .product-tag {
+      display: inline-block;
+      background: var(--white); color: var(--black);
+      font-size: 10px; font-weight: 700;
+      letter-spacing: .15em; text-transform: uppercase;
+      padding: 4px 12px; margin-bottom: 14px;
+    }
+    .product-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1; letter-spacing: .04em;
+      color: var(--white); margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .product-stars { display: flex; align-items: center; gap: 6px; margin-bottom: 16px; }
+    .stars { color: #f5c518; font-size: 15px; letter-spacing: 2px; }
+    .stars-label { font-size: 12px; color: var(--muted); font-weight: 600; }
+    .product-prices { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+    .price-old { font-size: 15px; color: var(--muted); text-decoration: line-through; }
+    .price-new { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--white); letter-spacing: .04em; }
+    .price-badge { background: var(--white); color: var(--black); font-size: 11px; font-weight: 700; padding: 3px 8px; letter-spacing: .1em; }
+
+
+
+    .divider { border: none; border-top: 1px solid #1f1f1f; margin: 18px 0; }
+
+    /* PAYMENT */
+    .payment-title { font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .payment-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
+    .pay-btn {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 14px 20px; font-family: var(--font-body); font-weight: 700;
+      font-size: 13px; letter-spacing: .12em; text-transform: uppercase;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: opacity .2s, transform .15s; width: 100%;
+    }
+    .pay-btn:hover { opacity: .88; transform: translateY(-1px); }
+    .pay-btn:active { transform: translateY(0); }
+    .pay-mx { background: var(--white); color: var(--black); }
+    .pay-paypal { background: #1a1a1a; color: var(--white); border: 1px solid #444; }
+    .pay-felix { background: #1a1a1a; color: var(--white); border: 1px solid #333; }
+    .pay-flag { font-size: 16px; }
+
+    /* WHATSAPP FORM */
+    .wa-form {
+      display: none; background: #111;
+      border: 1px solid #2a2a2a; padding: 18px;
+      margin-top: 10px; animation: fadeIn .25s ease;
+    }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
+    .wa-form-intro { font-size: 12px; color: #aaa; margin-bottom: 14px; line-height: 1.6; }
+    .wa-field { margin-bottom: 14px; }
+    .wa-label { display: block; font-size: 10px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .wa-input { width: 100%; background: var(--black); border: 1px solid #333; color: var(--white); font-family: var(--font-body); font-size: 13px; padding: 10px 12px; outline: none; transition: border-color .2s; }
+    .wa-input:focus { border-color: var(--white); }
+    .wa-options { display: flex; gap: 8px; }
+    .wa-opt { flex: 1; background: var(--black); border: 1px solid #333; color: #aaa; font-family: var(--font-body); font-size: 12px; font-weight: 600; padding: 10px 8px; cursor: pointer; transition: all .2s; text-align: center; }
+    .wa-opt.selected { border-color: var(--white); color: var(--white); background: #1a1a1a; }
+    .wa-send {
+      width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: #25d366; color: #fff; font-family: var(--font-body); font-weight: 700;
+      font-size: 13px; letter-spacing: .12em; text-transform: uppercase;
+      padding: 13px; border: none; cursor: pointer; transition: opacity .2s; margin-top: 4px;
+    }
+    .wa-send:hover { opacity: .88; }
+
+    /* INCLUDES */
+    .includes-title { font-family: var(--font-display); font-size: 1.1rem; letter-spacing: .08em; color: var(--white); margin-bottom: 12px; text-transform: uppercase; }
+    .includes-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+    .includes-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #ccc; line-height: 1.5; }
+    .includes-list li::before { content: '✓'; color: var(--white); font-weight: 900; font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+
+    /* DELIVERY */
+    .delivery-box { background: #111; border: 1px solid #222; padding: 16px; margin-top: 18px; }
+    .delivery-box p { font-size: 13px; color: #bbb; line-height: 1.7; }
+    .delivery-box strong { color: var(--white); }
+
+    /* GALLERY */
+    .gallery-section { max-width: 1100px; margin: 0 auto; padding: 0 clamp(16px, 5vw, 48px) clamp(48px, 6vw, 80px); }
+    .gallery-section-title { font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 2rem); letter-spacing: .08em; text-transform: uppercase; color: var(--white); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #1f1f1f; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(clamp(100px, 18vw, 160px), 1fr)); gap: 6px; }
+    .gallery-item { aspect-ratio: 1/1; overflow: hidden; background: #111; cursor: pointer; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease; filter: grayscale(20%); }
+    .gallery-item:hover img { transform: scale(1.08); filter: grayscale(0%); }
+
+    @media (max-width: 680px) {
+      .product-wrap {
+        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 0;
+      }
+      .product-gallery { order: 1; }
+      .product-info    { order: 2; }
+      .mobile-extra    { order: 3; }
+
+      .features { grid-template-columns: 1fr !important; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .social-grid { grid-template-columns: 1fr 1fr; }
+
+      /* En móvil: ocultar grupo y reviews de la galería, mostrar los del mobile-extra */
+      .grupo-desktop { display: none; }
+      .grupo-mobile  { display: block; }
+      .reviews-desktop { display: none; }
+      .reviews-mobile  { display: block; }
+    }
+
+    @media (min-width: 681px) {
+      /* En laptop: ocultar los del mobile-extra */
+      .grupo-mobile { display: none; }
+      .reviews-mobile { display: none; }
+    }
+
+
+
+    .features{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin:20px 0;
+}
+
+.feature{
+  border:1px solid #2a2a2a;
+  padding:14px;
+  background:#111;
+}
+
+.feature h4{
+  font-size:14px;
+  margin-bottom:4px;
+}
+
+.feature p{
+  font-size:12px;
+  color:#aaa;
+}
+
+
+
+.grupo-section{
+  margin:40px auto;
+  padding:40px 20px;
+  background:#111;
+  border:1px solid #2a2a2a;
+  text-align:center;
+}
+
+.grupo-content{
+  max-width:600px;
+  margin:auto;
+}
+
+.grupo-icon{
+  font-size:40px;
+  margin-bottom:10px;
+}
+
+.grupo-section h2{
+  font-size:28px;
+  margin-bottom:10px;
+}
+
+.grupo-section p{
+  font-size:14px;
+  color:#aaa;
+  margin-bottom:20px;
+}
+
+.grupo-btn{
+  display:inline-block;
+  padding:12px 24px;
+  background:#25d366;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  border-radius:6px;
+}
+
+
+.contact-section{
+  margin:40px auto;
+  padding:30px;
+  border:1px solid #2a2a2a;
+  background:#111;
+}
+
+.contact-msg{
+  font-size:14px;
+  color:#ccc;
+  margin-bottom:20px;
+}
+
+.social-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.social-btn{
+  text-align:center;
+  padding:14px;
+  font-weight:bold;
+  text-decoration:none;
+  color:white;
+  border-radius:6px;
+}
+
+.social-btn{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+
+  padding:14px;
+  font-weight:700;
+  text-decoration:none;
+  color:#fff;
+
+  border-radius:8px;
+  overflow:hidden;
+
+  transition:transform .2s, box-shadow .2s;
+}
+
+/* brillo animado */
+.social-btn::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:60%;
+  height:100%;
+
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.5),
+    transparent
+  );
+
+  transform:skewX(-25deg);
+  animation:shineSocial 4s infinite;
+}
+
+@keyframes shineSocial{
+  0%{ left:-120%; }
+  100%{ left:130%; }
+}
+
+/* hover */
+.social-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 12px rgba(255,255,255,0.25);
+}
+
+
+/* colores de cada red */
+.whatsapp{
+  background:linear-gradient(135deg,#1ebe5d,#25d366);
+}
+
+.instagram{
+  background:linear-gradient(135deg,#833ab4,#e1306c,#fd1d1d);
+}
+
+.facebook{
+  background:linear-gradient(135deg,#1877f2,#0a58ca);
+}
+
+.tiktok{
+  background:linear-gradient(135deg,#000,#1a1a1a);
+  border:1px solid #333;
+}
+.grupo-btn{
+  display:block;
+  text-align:center;
+  padding:14px;
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  border-radius:8px;
+
+  background:#000;
+  border:1px solid #fff;
+
+  position:relative;
+  overflow:hidden;
+
+  transition:transform .2s, box-shadow .2s;
+}
+
+/* brillo animado constante */
+.grupo-btn::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:60%;
+  height:100%;
+
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.6),
+    transparent
+  );
+
+  transform:skewX(-25deg);
+  animation:shine 3s infinite;
+}
+
+@keyframes shine{
+  0%{
+    left:-120%;
+  }
+  100%{
+    left:130%;
+  }
+}
+
+/* efecto adicional al pasar el mouse */
+.grupo-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 12px rgba(255,255,255,0.4);
+}
+.reviews-section{
+  margin:30px auto;
+  padding:20px;
+  border:1px solid #222;
+  background:#0f0f0f;
+}
+
+.reviews-title{
+  text-align:center;
+  margin-bottom:18px;
+  font-size:18px;
+  letter-spacing:.05em;
+}
+
+.reviews-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr; /* DOS COLUMNAS */
+  gap:10px;
+}
+
+.review{
+  border:1px solid #222;
+  padding:12px;
+  background:#0c0c0c;
+  border-radius:6px;
+}
+
+.review h4{
+  font-size:13px;
+  margin-bottom:4px;
+}
+
+.stars{
+  color:#f5c518;
+  font-size:12px;
+  margin-bottom:5px;
+}
+
+.review p{
+  font-size:12px;
+  color:#9a9a9a;
+  line-height:1.4;
+}
+
+.section-subtitle{
+text-align:center;
+margin-top:35px;
+margin-bottom:15px;
+font-size:18px;
+color:#fff;
+}
+
+.features{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
+}
+
+.feature{
+background:#0f0f0f;
+border:1px solid #2a2a2a;
+padding:16px;
+border-radius:8px;
+}
+
+.feature p{
+font-size:13px;
+color:#aaa;
+margin-bottom:6px;
+}
+
+
+.check-list { list-style:none; display:flex; flex-direction:column; gap:6px; }
+.check-list li { font-size:13px; color:#bbb; display:flex; align-items:flex-start; gap:9px; line-height:1.5; }
+.check-list li::before { content:'✓'; color:#f5f5f5; font-weight:900; font-size:13px; flex-shrink:0; }
+.temas-wrap { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+.tema { background:#1a1a1a; border:1px solid #2a2a2a; color:#bbb; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:5px 11px; }
+.tema.hot { background:#f5f5f5; color:#0a0a0a; border-color:#f5f5f5; }
+
+/* ══════════════════════════════════
+   CHECKOUT BOX — CUPÓN + RESUMEN + PAGO
+══════════════════════════════════ */
+.checkout-box {
+  border: 1px solid #222;
+  background: #0d0d0d;
+  margin: 18px 0;
+  overflow: hidden;
+}
+.checkout-step {
+  padding: 18px 20px;
+  border-bottom: 1px solid #1a1a1a;
+}
+.checkout-step-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 14px;
+}
+.step-num {
+  width: 22px; height: 22px;
+  background: var(--white);
+  color: var(--black);
+  border-radius: 50%;
+  font-size: 11px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.step-optional {
+  margin-left: auto;
+  font-size: 9px; color: #555; letter-spacing: .12em;
+}
+.cupon-input-row { display: flex; }
+.cupon-input {
+  flex: 1;
+  background: #111;
+  border: 1px solid #2a2a2a;
+  border-right: none;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 14px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 11px 14px; outline: none;
+  transition: border-color .2s;
+}
+.cupon-input::placeholder { color: #444; font-weight: 400; letter-spacing: .04em; text-transform: none; }
+.cupon-input:focus { border-color: #555; }
+.cupon-apply-btn {
+  background: var(--white); color: var(--black);
+  border: none;
+  font-family: var(--font-body); font-weight: 700;
+  font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+  padding: 11px 18px; cursor: pointer; white-space: nowrap;
+  transition: background .2s;
+}
+.cupon-apply-btn:hover { background: #ddd; }
+.cupon-msg {
+  margin-top: 8px; font-size: 12px; font-weight: 600;
+  letter-spacing: .06em; padding: 8px 12px;
+}
+.cupon-msg.ok { background: rgba(34,197,94,.12); border-left: 3px solid #22c55e; color: #22c55e; }
+.cupon-msg.err { background: rgba(239,68,68,.1); border-left: 3px solid #ef4444; color: #ef4444; }
+.order-summary {
+  padding: 16px 20px;
+  border-bottom: 1px solid #1a1a1a;
+  background: #0a0a0a;
+}
+.order-row {
+  display: flex; align-items: center;
+  justify-content: space-between; margin-bottom: 10px;
+}
+.order-row:last-child { margin-bottom: 0; }
+.order-label { font-size: 13px; color: #aaa; }
+.order-val { font-size: 13px; color: var(--white); font-weight: 600; }
+.order-green { color: #22c55e !important; }
+.order-divider { border: none; border-top: 1px solid #1f1f1f; margin: 12px 0; }
+.order-total-row { align-items: flex-start; }
+.order-total-label {
+  font-family: var(--font-display);
+  font-size: 1rem; letter-spacing: .1em; text-transform: uppercase; color: var(--white);
+}
+.order-total-right { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.order-total-price {
+  font-family: var(--font-display);
+  font-size: 1.9rem; color: var(--white); letter-spacing: .04em; line-height: 1;
+  transition: all .3s;
+}
+.order-total-usd { font-size: 11px; color: #666; letter-spacing: .06em; }
+.metodos-grid { display: flex; flex-direction: column; gap: 8px; }
+.metodo-btn {
+  display: flex; align-items: center; gap: 12px;
+  background: #111; border: 1px solid #2a2a2a; color: var(--white);
+  padding: 13px 16px; cursor: pointer; text-align: left;
+  transition: border-color .2s, background .2s; width: 100%;
+}
+.metodo-btn:hover { border-color: #555; background: #161616; }
+.metodo-btn.active { border-color: var(--white); background: #161616; }
+.metodo-flag { font-size: 20px; flex-shrink: 0; }
+.metodo-name {
+  font-family: var(--font-body); font-size: 13px; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--white);
+}
+.metodo-sub { font-size: 11px; color: #666; letter-spacing: .04em; margin-top: 1px; }
+.metodo-check { margin-left: auto; font-size: 14px; color: var(--white); font-weight: 900; flex-shrink: 0; }
+.datos-field { margin-bottom: 12px; }
+.datos-field:last-child { margin-bottom: 0; }
+.datos-label {
+  display: block; font-size: 10px; font-weight: 700;
+  letter-spacing: .15em; text-transform: uppercase; color: #666; margin-bottom: 6px;
+}
+.datos-input {
+  width: 100%; background: #111; border: 1px solid #2a2a2a;
+  color: var(--white); font-family: var(--font-body); font-size: 13px;
+  padding: 10px 13px; outline: none; transition: border-color .2s;
+}
+.datos-input:focus { border-color: var(--white); }
+.cta-pagar {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; background: var(--white); color: var(--black);
+  border: none; font-family: var(--font-body); font-weight: 700;
+  font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
+  padding: 16px 24px; cursor: pointer;
+  transition: background .2s, transform .15s;
+}
+.cta-pagar:hover { background: #e5e5e5; transform: translateY(-1px); }
+.cta-pagar:active { transform: translateY(0); }
+.cta-seguro {
+  font-size: 11px; color: #555; text-align: center;
+  padding: 10px 20px 14px; letter-spacing: .04em;
+}
+  </style>
+</head>
+<body>
+
+  <div class="topbar">🔥 Oferta por tiempo limitado — Megapack ojito</div>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Volver
+    </a>
+    <a href="index.html" class="nav-brand">Chechena Shirts</a>
+    <div style="width:60px"></div>
+  </nav>
+
+  <div class="product-wrap">
+
+<div class="product-gallery">
+
+  <div class="main-img-wrap">
+    <span class="img-badge">Actualizado 2026</span>
+    <img src="pack2.png" alt="Megapack ojito" id="main-img" />
+  </div>
+
+  <div class="thumbs">
+    <div class="thumb active" onclick="changeImg(this,'pack2.png')"><img src="pack2.jpg"></div>
+    <div class="thumb" onclick="changeImg(this,'galleryD1.jpg')"><img src="galleryD1.jpg" loading="lazy"></div>
+    <div class="thumb" onclick="changeImg(this,'galleryD2.jpg')"><img src="galleryD2.jpg" loading="lazy"></div>
+    <div class="thumb" onclick="changeImg(this,'galleryD3.jpg')"><img src="galleryD3.jpg" loading="lazy"></div>
+    <div class="thumb" onclick="changeImg(this,'galleryD4.jpg')"><img src="galleryD4.jpg" loading="lazy"></div>
+
+    <div class="thumb" onclick="changeImg(this,'galleryD5.jpg')"><img src="galleryD5.jpg" loading="lazy"></div>
+    <div class="thumb" onclick="changeImg(this,'galleryD6.jpg')"><img src="galleryD6.jpg" loading="lazy"></div>
+    <div class="thumb" onclick="changeImg(this,'galleryD7.jpg')"><img src="galleryD7.jpg" loading="lazy"></div>
+    <div class="thumb" onclick="changeImg(this,'galleryD8.jpg')"><img src="galleryD8.jpg" loading="lazy"></div>
+    <div class="thumb" onclick="changeImg(this,'galleryD9.jpg')"><img src="galleryD9.jpg" loading="lazy"></div>
+  </div>
+
+  <!-- Grupo: visible en laptop (columna izquierda), oculto en móvil -->
+  <div class="grupo-section grupo-desktop">
+    <div class="grupo-icon">🚀</div>
+    <h2>Grupo de Emprendedores</h2>
+    <p>Comparto tips, ayudas y todos los nuevos diseños que agrego al megapack. Aprende, inspírate y lleva tu negocio al siguiente nivel.</p>
+    <a href="https://chat.whatsapp.com/E7sagZb9fAn7ekZk1p5INI" target="_blank" class="grupo-btn">Unirme al grupo</a>
+  </div>
+
+  <!-- Referencias: visible en laptop (columna izquierda), oculto en móvil -->
+  <div class="reviews-section reviews-desktop">
+    <h2 class="reviews-title">⭐ Lo que dicen quienes ya ahorran tiempo diseñando y estampando</h2>
+    <div class="reviews-grid">
+      <div class="review"><h4>María López</h4><div class="stars">★★★★☆</div><p>Los diseños están listos para imprimir. Me ahorró meses de trabajo.</p></div>
+      <div class="review"><h4>Carlos</h4><div class="stars">★★★★☆</div><p>Muy buena calidad y los extras PRO valen muchísimo la pena.</p></div>
+      <div class="review"><h4>Lucía</h4><div class="stars">★★★★★</div><p>¡Increíble calidad y variedad de diseños! Super recomendado.</p></div>
+      <div class="review"><h4>Juanma</h4><div class="stars">★★★★★</div><p>Muy buenos diseños, igual los programas, excelentes.</p></div>
+      <div class="review"><h4>Yazminarellano</h4><div class="stars">★★★★★</div><p>Imágenes increíbles y super fácil de usar. Mucha variedad para escoger.</p></div>
+      <div class="review"><h4>Donerling</h4><div class="stars">★★★★★</div><p>Excelente pack. Muy agradecido por la ayuda continua y actualizaciones. ¡Recomendado!</p></div>
+      <div class="review"><h4>Josafat Ontiveros</h4><div class="stars">★★★★☆</div><p>Un buen pack que contiene todo lo que describe. Me ayudó a sacar muchas cosas adelante.</p></div>
+      <div class="review"><h4>Diegocazares</h4><div class="stars">★★★★★</div><p>Excelente servicio, rápido y eficiente. Muy buena calidad en diseño y tendencia. 100% recomendado.</p></div>
+    </div>
+  </div>
+
+</div><!-- /product-gallery -->
+
+
+
+    <div class="product-info">
+
+  <span class="product-tag">🔥 Edición Exclusiva</span>
+
+  <h1 class="product-title">
+    MEGAPACK<br>OJITO
+  </h1>
+
+  <p class="product-sub">
+    Diseños premium en tendencia para estampado profesional
+  </p>
+
+  <div class="product-stars">
+    <span class="stars">★★★★★</span>
+    <span class="stars-label">4.9 / 5 • Más de 1,200 clientes</span>
+  </div>
+
+  <div class="product-prices">
+<span class="price-old" data-mxn="800">$800 MXN</span>
+<span class="price-new" data-mxn="400">$400 MXN</span>
+    <span class="price-badge">50% OFF</span>
+  </div>
+
+      <!-- BLOQUE CUPÓN + RESUMEN + PAGO -->
+      <div class="checkout-box">
+
+        <!-- PASO 1: Cupón -->
+        <div class="checkout-step">
+          <div class="checkout-step-label">
+            <span class="step-num">1</span>
+            <span>¿Tienes un cupón?</span>
+            <span class="step-optional">opcional</span>
+          </div>
+          <div class="cupon-input-row">
+            <input
+              type="text"
+              id="cupon-input"
+              class="cupon-input"
+              placeholder="Ej. CHECHENA_SHIRTS"
+              autocomplete="off"
+              oninput="this.value=this.value.toUpperCase()"
+            />
+            <button class="cupon-apply-btn" onclick="aplicarCupon()">Aplicar</button>
+          </div>
+          <div id="cupon-msg" class="cupon-msg" style="display:none"></div>
+        </div>
+
+        <!-- RESUMEN DE ORDEN -->
+        <div class="order-summary">
+          <div class="order-row">
+            <span class="order-label">Megapack Ojito</span>
+            <span class="order-val">$400 MXN</span>
+          </div>
+          <div class="order-row order-desc-row" id="descuento-row" style="display:none">
+            <span class="order-label order-green">
+              <span id="cupon-tag">CHECHENA50</span> aplicado ✓
+            </span>
+            <span class="order-val order-green" id="descuento-val">−$50 MXN</span>
+          </div>
+          <div class="order-divider"></div>
+          <div class="order-row order-total-row">
+            <span class="order-total-label">Total</span>
+            <div class="order-total-right">
+              <span class="order-total-price" id="precio-final">$400 MXN</span>
+              <span class="order-total-usd" id="precio-final-usd">≈ $20.00 USD</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASO 2: Método de pago -->
+        <div class="checkout-step">
+          <div class="checkout-step-label">
+            <span class="step-num">2</span>
+            <span>Elige tu método de pago</span>
+          </div>
+          <div class="metodos-grid">
+            <button class="metodo-btn metodo-mx active" id="btn-mx" onclick="selectMetodo('mx')">
+              <span class="metodo-flag">🇲🇽</span>
+              <div>
+                <div class="metodo-name">Transferencia</div>
+                <div class="metodo-sub">México · Depósito / SPEI</div>
+              </div>
+              <span class="metodo-check" id="check-mx">✓</span>
+            </button>
+            <button class="metodo-btn" id="btn-paypal" onclick="selectMetodo('paypal')">
+              <span class="metodo-flag">🌎</span>
+              <div>
+                <div class="metodo-name">PayPal</div>
+                <div class="metodo-sub">Internacional · USD</div>
+              </div>
+              <span class="metodo-check" id="check-paypal" style="display:none">✓</span>
+            </button>
+            <button class="metodo-btn" id="btn-felix" onclick="selectMetodo('felix')">
+              <span class="metodo-flag">🇺🇸</span>
+              <div>
+                <div class="metodo-name">Felix</div>
+                <div class="metodo-sub">Estados Unidos · USD</div>
+              </div>
+              <span class="metodo-check" id="check-felix" style="display:none">✓</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- PASO 3: Datos -->
+        <div class="checkout-step" id="step-datos">
+          <div class="checkout-step-label">
+            <span class="step-num">3</span>
+            <span>Tus datos para el pedido</span>
+          </div>
+          <div class="datos-field">
+            <label class="datos-label">Nombre completo</label>
+            <input type="text" id="datos-nombre" class="datos-input" placeholder="Ej. Juan Pérez" />
+          </div>
+          <div class="datos-field">
+            <label class="datos-label">Correo electrónico</label>
+            <input type="email" id="datos-email" class="datos-input" placeholder="Ej. juan@correo.com" />
+          </div>
+        </div>
+
+        <!-- CTA FINAL -->
+        <button class="cta-pagar" id="cta-pagar" onclick="procesarPago()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.535 5.857L.057 23.273a.75.75 0 00.92.92l5.416-1.478A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.183-1.433l-.372-.222-3.862 1.053 1.053-3.862-.222-.372A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+          </svg>
+          <span id="cta-pagar-texto">Solicitar datos de pago por WhatsApp</span>
+        </button>
+
+        <p class="cta-seguro">🔒 Acceso inmediato tras confirmar tu pago · Sin suscripciones</p>
+
+      </div>
+<div class="contact-section">
+
+  <p class="contact-msg">
+    📩 Una vez pagado, envía tu comprobante y correo electrónico por nuestras redes para darte acceso inmediato.
+  </p>
+
+  <div class="social-grid">
+
+    <a href="https://wa.me/529212337934" target="_blank" class="social-btn whatsapp">
+      WhatsApp
+    </a>
+
+    <a href="https://www.instagram.com/chechena_shirts?igsh=MTkxamNydXJiNHpyYw==" target="_blank" class="social-btn instagram">
+      Instagram
+    </a>
+
+    <a href="https://www.facebook.com/share/1GyQAhvMFY/" target="_blank" class="social-btn facebook">
+      Facebook
+    </a>
+
+    <a href="https://www.tiktok.com/@chechena_shirts?_r=1&_t=ZS-94J5Y5G7Rpd" target="_blank" class="social-btn tiktok">
+      TikTok
+    </a>
+
+</div>
+
+      <div class="delivery-box">
+        <p>
+          <strong>📩 Recibe en tu correo de inmediato.</strong><br/>
+          Una vez confirmado tu pago te enviamos el link de descarga.
+          Acceso de por vida — los nuevos diseños que suba al pack
+          <strong>te aparecerán totalmente gratis.</strong>
+        </p>
+      </div>
+
+      <hr class="divider" />
+<p class="includes-title">🚨 +66,756 Diseños Profesionales Listos Para Producir</p>
+
+<p style="text-align:center;color:#aaa;margin-bottom:22px;font-size:13px;line-height:1.6">
+No es solo un paquete de imágenes. Es un sistema completo de producción y venta para negocios reales de estampado.
+</p>
+
+<h3 class="section-subtitle">🎨 ¿Qué incluye el Megapack Ojito?</h3>
+<div class="features">
+  <div class="feature">
+    <h4>📦 Archivos de Diseño</h4>
+    <ul class="check-list">
+      <li>+66,756 diseños en PNG y PDF para DTF</li>
+      <li>Semitono profesional ya aplicado</li>
+      <li>Calidad optimizada DTF y sublimación</li>
+      <li>Acceso inmediato por Google Drive</li>
+      <li>Compatible con cualquier software</li>
+    </ul>
+  </div>
+  <div class="feature">
+    <h4>🗂️ Temáticas Incluidas</h4>
+    <div class="temas-wrap">
+      <span class="tema hot">Anime</span>
+      <span class="tema hot">Streetwear</span>
+      <span class="tema hot">Cultura Mexicana</span>
+      <span class="tema">Frases Virales</span>
+      <span class="tema">Retro & Vintage</span>
+      <span class="tema">Fitness</span>
+            <span class="tema">Belicos</span>
+                        <span class="tema">Estilo bordado</span>
+      <span class="tema hot">Tendencias</span>
+    </div>
+  </div>
+</div>
+
+<h3 class="section-subtitle">🧰 Extras PRO Incluidos</h3>
+<div class="features">
+  <div class="feature">
+    <h4>🖥️ Acciones Photoshop</h4>
+    <ul class="check-list">
+      <li>Quitar fondo automático</li>
+      <li>Mockups automáticos</li>
+      <li>Semitonos profesionales</li>
+      <li>Efecto bordado</li>
+    </ul>
+  </div>
+  <div class="feature">
+    <h4>📊 Excel PRO de Negocios</h4>
+    <ul class="check-list">
+      <li>Calculadora de costos</li>
+      <li>Punto de equilibrio</li>
+      <li>Precio de venta ideal</li>
+      <li>Ganancias reales</li>
+    </ul>
+  </div>
+  <div class="feature">
+    <h4>📐 Plantillas & Vectores</h4>
+    <ul class="check-list">
+      <li>Recursos vectoriales editables</li>
+      <li>Plantillas de trabajo listas</li>
+    </ul>
+  </div>
+  <div class="feature">
+    <h4>📖 Guías Paso a Paso</h4>
+    <ul class="check-list">
+      <li>Para principiantes y avanzados</li>
+      <li>Flujo completo de producción</li>
+    </ul>
+  </div>
+</div>
+
+<h3 class="section-subtitle">💻 Programas Incluidos</h3>
+<div class="features">
+  <div class="feature" style="display:flex;align-items:center;gap:10px">
+    <div style="width:34px;height:34px;background:#1a1a1a;border:1px solid #2a2a2a;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0">Ps</div>
+    <div><h4 style="margin-bottom:3px">Adobe Photoshop</h4><p>Edición y acciones automáticas</p></div>
+  </div>
+  <div class="feature" style="display:flex;align-items:center;gap:10px">
+    <div style="width:34px;height:34px;background:#1a1a1a;border:1px solid #2a2a2a;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0">Ai</div>
+    <div><h4 style="margin-bottom:3px">Adobe Illustrator</h4><p>Edición vectorial profesional</p></div>
+  </div>
+  <div class="feature" style="display:flex;align-items:center;gap:10px">
+    <div style="width:34px;height:34px;background:#1a1a1a;border:1px solid #2a2a2a;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0">VM</div>
+    <div><h4 style="margin-bottom:3px">Vector Magic</h4><p>Vectorización automática</p></div>
+  </div>
+  <div class="feature" style="display:flex;align-items:center;gap:10px">
+    <div style="width:34px;height:34px;background:#1a1a1a;border:1px solid #2a2a2a;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0">GP</div>
+    <div><h4 style="margin-bottom:3px">Topaz Gigapixel</h4><p>Aumento de resolución con IA</p></div>
+  </div>
+</div>
+
+<h3 class="section-subtitle">🎯 Ideal Para</h3>
+<div class="features" style="grid-template-columns:1fr">
+  <div class="feature">
+    <ul class="check-list">
+      <li>Marcas de ropa urbana</li>
+      <li>Negocios de estampado DTF</li>
+      <li>Sublimación textil</li>
+      <li>Diseñadores freelance</li>
+      <li>Emprendedores que quieren vender sin perder meses diseñando</li>
+    </ul>
+  </div>
+</div>    </div><!-- /product-info -->
+  </div><!-- /product-wrap -->
+
+  <!-- SECCIÓN EXTRA: Grupo + Reviews — al final en mobile -->
+  <div class="mobile-extra" style="max-width:1100px;margin:0 auto;padding:0 clamp(16px,5vw,48px);">
+
+    <div class="grupo-section grupo-mobile">
+      <div class="grupo-icon">🚀</div>
+      <h2>Grupo de Emprendedores</h2>
+      <p>Comparto tips, ayudas y todos los nuevos diseños que agrego al megapack. Aprende, inspírate y lleva tu negocio al siguiente nivel.</p>
+      <a href="https://chat.whatsapp.com/E7sagZb9fAn7ekZk1p5INI" target="_blank" class="grupo-btn">Unirme al grupo</a>
+    </div>
+
+    <div class="reviews-section reviews-mobile">
+      <h2 class="reviews-title">⭐ Lo que dicen quienes ya ahorran tiempo diseñando y estampando</h2>
+      <div class="reviews-grid">
+        <div class="review">
+          <h4>María López</h4>
+          <div class="stars">★★★★☆</div>
+          <p>Los diseños están listos para imprimir. Me ahorró meses de trabajo.</p>
+        </div>
+        <div class="review">
+          <h4>Carlos</h4>
+          <div class="stars">★★★★☆</div>
+          <p>Muy buena calidad y los extras PRO valen muchísimo la pena.</p>
+        </div>
+        <div class="review">
+          <h4>Lucía</h4>
+          <div class="stars">★★★★★</div>
+          <p>¡Increíble calidad y variedad de diseños! Super recomendado.</p>
+        </div>
+        <div class="review">
+          <h4>Juanma</h4>
+          <div class="stars">★★★★★</div>
+          <p>Muy buenos diseños, igual los programas, excelentes.</p>
+        </div>
+        <div class="review">
+          <h4>Yazminarellano</h4>
+          <div class="stars">★★★★★</div>
+          <p>Imágenes increíbles y super fácil de usar. Mucha variedad para escoger.</p>
+        </div>
+        <div class="review">
+          <h4>Donerling</h4>
+          <div class="stars">★★★★★</div>
+          <p>Excelente pack. Muy agradecido por la ayuda continua y actualizaciones. ¡Recomendado!</p>
+        </div>
+        <div class="review">
+          <h4>Josafat Ontiveros</h4>
+          <div class="stars">★★★★☆</div>
+          <p>Un buen pack que contiene todo lo que describe. Me ayudó a sacar muchas cosas adelante.</p>
+        </div>
+        <div class="review">
+          <h4>Diegocazares</h4>
+          <div class="stars">★★★★★</div>
+          <p>Excelente servicio, rápido y eficiente. Muy buena calidad en diseño y tendencia. 100% recomendado.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function changeImg(thumb, src) {
+      document.getElementById('main-img').src = src;
+      document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+    }
+
+  /* ── CUPONES VÁLIDOS ── */
+  const CUPONES = {
+    'CHECHENA50': { descMXN: 50, descUSD: 2.50, label: '$50 MXN' }
+  };
+  const PRECIO_BASE_MXN = 400;
+  const PRECIO_BASE_USD = 20.00;
+  let cuponAplicado = null;
+  let metodoSeleccionado = 'mx';
+
+  function aplicarCupon() {
+    const input = document.getElementById('cupon-input').value.trim().toUpperCase();
+    const msg   = document.getElementById('cupon-msg');
+    const rowD  = document.getElementById('descuento-row');
+
+    if (!input) { mostrarMsg(msg, 'err', '⚠ Escribe un código de cupón.'); return; }
+
+    if (CUPONES[input]) {
+      cuponAplicado = { codigo: input, ...CUPONES[input] };
+      mostrarMsg(msg, 'ok', `✓ Cupón "${input}" aplicado — ahorras ${cuponAplicado.label}`);
+      document.getElementById('cupon-tag').textContent = input;
+      document.getElementById('descuento-val').textContent = `−$${cuponAplicado.descMXN} MXN`;
+      rowD.style.display = 'flex';
+      actualizarTotal();
+    } else {
+      cuponAplicado = null;
+      rowD.style.display = 'none';
+      mostrarMsg(msg, 'err', '✕ Cupón inválido o expirado.');
+      actualizarTotal();
+    }
+  }
+
+  function mostrarMsg(el, tipo, texto) {
+    el.className = 'cupon-msg ' + tipo;
+    el.textContent = texto;
+    el.style.display = 'block';
+  }
+
+  function actualizarTotal() {
+    const descMXN = cuponAplicado ? cuponAplicado.descMXN : 0;
+    const descUSD = cuponAplicado ? cuponAplicado.descUSD : 0;
+    const finalMXN = PRECIO_BASE_MXN - descMXN;
+    const finalUSD = (PRECIO_BASE_USD - descUSD).toFixed(2);
+    document.getElementById('precio-final').textContent = `$${finalMXN} MXN`;
+    document.getElementById('precio-final-usd').textContent = `≈ $${finalUSD} USD`;
+  }
+
+  function selectMetodo(met) {
+    metodoSeleccionado = met;
+    ['mx','paypal','felix'].forEach(m => {
+      document.getElementById('btn-'+m).classList.remove('active');
+      document.getElementById('check-'+m).style.display = 'none';
+    });
+    document.getElementById('btn-'+met).classList.add('active');
+    document.getElementById('check-'+met).style.display = 'inline';
+
+    const stepDatos = document.getElementById('step-datos');
+    const ctaTxt    = document.getElementById('cta-pagar-texto');
+    if (met === 'mx') {
+      stepDatos.style.display = 'block';
+      ctaTxt.textContent = 'Solicitar datos de pago por WhatsApp';
+    } else if (met === 'paypal') {
+      stepDatos.style.display = 'none';
+      ctaTxt.textContent = 'Pagar con PayPal';
+    } else {
+      stepDatos.style.display = 'none';
+      ctaTxt.textContent = 'Pagar vía Felix — WhatsApp';
+    }
+  }
+
+  function procesarPago() {
+    const descMXN = cuponAplicado ? cuponAplicado.descMXN : 0;
+    const finalMXN = PRECIO_BASE_MXN - descMXN;
+    const descUSD  = cuponAplicado ? cuponAplicado.descUSD : 0;
+    const finalUSD = (PRECIO_BASE_USD - descUSD).toFixed(2);
+
+    if (metodoSeleccionado === 'paypal') {
+      window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=lunasegoviadg@gmail.com&currency_code=USD', '_blank');
+      return;
+    }
+
+    const nombre = (document.getElementById('datos-nombre')?.value || '').trim();
+    const email  = (document.getElementById('datos-email')?.value  || '').trim();
+
+    if (metodoSeleccionado === 'mx') {
+      if (!nombre) { alert('Por favor escribe tu nombre.'); document.getElementById('datos-nombre').focus(); return; }
+      if (!email || !email.includes('@')) { alert('Ingresa un correo electrónico válido.'); document.getElementById('datos-email').focus(); return; }
+      const cuponInfo = cuponAplicado ? `\nCupón aplicado: ${cuponAplicado.codigo} (−$${cuponAplicado.descMXN} MXN)` : '';
+      const msg = `Hola! 👋 Quiero comprar el Megapack Ojito.\n\n👤 Nombre: ${nombre}\n📧 Correo: ${email}${cuponInfo}\n💰 Total a pagar: $${finalMXN} MXN\n\nPor favor envíame los datos de pago 🙌`;
+      window.open(`https://wa.me/529212337934?text=${encodeURIComponent(msg)}`, '_blank');
+    } else {
+      const msg = `Hola! 👋 Quiero comprar el Megapack Ojito desde USA.\n💰 Total: $${finalUSD} USD\nPago vía Felix 🙌`;
+      window.open(`https://wa.me/529212337934?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+  }
+  </script>
+<script src="script.js"></script>
+</body>
+</html>
